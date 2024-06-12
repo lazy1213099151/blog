@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="VuePress 2.0.0-rc.12">
+    <script>
+      (function() {
+        const userMode = localStorage.getItem('vuepress-reco-color-scheme') || 'auto';
+        const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (userMode === 'dark' || (userMode === 'auto' && systemDarkMode)) {
+          document.documentElement.classList.toggle('dark', true);
+        }
+      })();
+    </script>
+    <title>websocket-学习笔记 | Lazy</title><meta name="description" content="">
+    <link rel="preload" href="/blog/assets/style-BF7N2T-n.css" as="style"><link rel="stylesheet" href="/blog/assets/style-BF7N2T-n.css">
+    <link rel="modulepreload" href="/blog/assets/app-DtKoVOCb.js"><link rel="modulepreload" href="/blog/assets/websocket.html-CczgTN7_.js">
+    <link rel="prefetch" href="/blog/assets/timeline.html-DUJywnfI.js" as="script"><link rel="prefetch" href="/blog/assets/posts.html-CgDEvvSn.js" as="script"><link rel="prefetch" href="/blog/assets/friendship-link.html-DteKq1uE.js" as="script"><link rel="prefetch" href="/blog/assets/1.html-DxEoeeM3.js" as="script"><link rel="prefetch" href="/blog/assets/1.html-BwSsK_OF.js" as="script"><link rel="prefetch" href="/blog/assets/1.html-DvLnAbyV.js" as="script"><link rel="prefetch" href="/blog/assets/1.html-C473NzNM.js" as="script"><link rel="prefetch" href="/blog/assets/1.html-CbFj6144.js" as="script"><link rel="prefetch" href="/blog/assets/1.html-DiyMDh_4.js" as="script"><link rel="prefetch" href="/blog/assets/1.html-a94Ygn-E.js" as="script"><link rel="prefetch" href="/blog/assets/1.html-B-GCn-bZ.js" as="script"><link rel="prefetch" href="/blog/assets/1.html-CneNckrr.js" as="script"><link rel="prefetch" href="/blog/assets/index.html-C0i0tG3i.js" as="script"><link rel="prefetch" href="/blog/assets/docker.html-DaYpXFDE.js" as="script"><link rel="prefetch" href="/blog/assets/pinia.html-BpAkOdQp.js" as="script"><link rel="prefetch" href="/blog/assets/api.html-C00z3pia.js" as="script"><link rel="prefetch" href="/blog/assets/home.html-DVUdzP2z.js" as="script"><link rel="prefetch" href="/blog/assets/plugin.html-CrauC891.js" as="script"><link rel="prefetch" href="/blog/assets/theme.html-CQnSmokl.js" as="script"><link rel="prefetch" href="/blog/assets/404.html-CPBNOYMb.js" as="script"><link rel="prefetch" href="/blog/assets/reco-valine-BI2JzRng.js" as="script"><link rel="prefetch" href="/blog/assets/giscus-aTimukGI-CKTvSCx2.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme-container"><div class="common-wrapper series--no"><header class="navbar-container" style="top:0;"><div class="site-brand nav-item"><img class="logo" src="/blog/blog_icon.png" alt="Lazy"><a href="/blog/" class="site-name can-hide">Lazy</a></div><div class="nav-item navbar-links-wrapper" style=""><div><form class="search-box" role="search"><input type="search" autocomplete="off" spellcheck="false" value><!----></form></div><nav class="navbar-links"><!--[--><div class="navbar-links__item"><a href="/blog/" class="link" aria-label="首页"><!--[--><!--]--><span class="xicon-container left"><!--[--><!----><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[-->首页<!--]--></span></span><!--[--><!--]--></a></div><div class="navbar-links__item"><a href="/blog/categories/docker/1.html" class="link" aria-label="分类"><!--[--><!--]--><span class="xicon-container left"><!--[--><!----><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[-->分类<!--]--></span></span><!--[--><!--]--></a></div><div class="navbar-links__item"><a href="/blog/tags/docker/1.html" class="link" aria-label="标签"><!--[--><!--]--><span class="xicon-container left"><!--[--><!----><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[-->标签<!--]--></span></span><!--[--><!--]--></a></div><div class="navbar-links__item"><a href="/blog/timeline.html" class="link" aria-label="归档"><!--[--><!--]--><span class="xicon-container left"><!--[--><!----><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[-->归档<!--]--></span></span><!--[--><!--]--></a></div><!--]--></nav><span class="xicon-container btn-toggle-dark-mode btn--dark-mode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="width:20px;height:20px;font-size:20px;color:inherit;"><path d="M15 2h2v3h-2z" fill="currentColor"></path><path d="M27 15h3v2h-3z" fill="currentColor"></path><path d="M15 27h2v3h-2z" fill="currentColor"></path><path d="M2 15h3v2H2z" fill="currentColor"></path><path d="M5.45 6.884l1.414-1.415l2.121 2.122l-1.414 1.414z" fill="currentColor"></path><path d="M23 7.58l2.121-2.12l1.414 1.414l-2.121 2.121z" fill="currentColor"></path><path d="M23.002 24.416l1.415-1.414l2.12 2.122l-1.413 1.414z" fill="currentColor"></path><path d="M5.47 25.13L7.59 23L9 24.42l-2.12 2.12l-1.41-1.41z" fill="currentColor"></path><path d="M16 8a8 8 0 1 0 8 8a8 8 0 0 0-8-8zm0 14a6 6 0 0 1 0-12z" fill="currentColor"></path></svg></span><span class="xicon-container btn-toggle-menus"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="width:20px;height:20px;font-size:20px;color:inherit;"><circle cx="16" cy="8" r="2" fill="currentColor"></circle><circle cx="16" cy="16" r="2" fill="currentColor"></circle><circle cx="16" cy="24" r="2" fill="currentColor"></circle></svg></span></div></header><!----><div class="mobile-menus-container"><nav class="navbar-links mobile"><!--[--><div class="navbar-links__item"><a href="/blog/" class="link" aria-label="首页"><!--[--><!--]--><span class="xicon-container left"><!--[--><!----><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[-->首页<!--]--></span></span><!--[--><!--]--></a></div><div class="navbar-links__item"><a href="/blog/categories/docker/1.html" class="link" aria-label="分类"><!--[--><!--]--><span class="xicon-container left"><!--[--><!----><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[-->分类<!--]--></span></span><!--[--><!--]--></a></div><div class="navbar-links__item"><a href="/blog/tags/docker/1.html" class="link" aria-label="标签"><!--[--><!--]--><span class="xicon-container left"><!--[--><!----><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[-->标签<!--]--></span></span><!--[--><!--]--></a></div><div class="navbar-links__item"><a href="/blog/timeline.html" class="link" aria-label="归档"><!--[--><!--]--><span class="xicon-container left"><!--[--><!----><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[-->归档<!--]--></span></span><!--[--><!--]--></a></div><!--]--></nav><div class="appearance"><span>Appearance</span><span class="xicon-container btn-toggle-dark-mode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="width:20px;height:20px;font-size:20px;color:inherit;"><path d="M15 2h2v3h-2z" fill="currentColor"></path><path d="M27 15h3v2h-3z" fill="currentColor"></path><path d="M15 27h2v3h-2z" fill="currentColor"></path><path d="M2 15h3v2H2z" fill="currentColor"></path><path d="M5.45 6.884l1.414-1.415l2.121 2.122l-1.414 1.414z" fill="currentColor"></path><path d="M23 7.58l2.121-2.12l1.414 1.414l-2.121 2.121z" fill="currentColor"></path><path d="M23.002 24.416l1.415-1.414l2.12 2.122l-1.413 1.414z" fill="currentColor"></path><path d="M5.47 25.13L7.59 23L9 24.42l-2.12 2.12l-1.41-1.41z" fill="currentColor"></path><path d="M16 8a8 8 0 1 0 8 8a8 8 0 0 0-8-8zm0 14a6 6 0 0 1 0-12z" fill="currentColor"></path></svg></span></div></div><div class="series-mask"></div><aside class="series-container"><div class="site-brand"><img class="logo" src="/blog/blog_icon.png" alt="Lazy"><a href="/blog/" class="site-name can-hide">Lazy</a></div><!--[--><!--]--></aside><!--[--><main class="page-container"><h1 class="page-title">websocket-学习笔记</h1><div class="page-info"><span class="xicon-container left"><!--[--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" class="xicon-icon" style="width:18px;height:18px;font-size:18px;color:inherit;"><path d="M16 4a5 5 0 1 1-5 5a5 5 0 0 1 5-5m0-2a7 7 0 1 0 7 7a7 7 0 0 0-7-7z" fill="currentColor"></path><path d="M26 30h-2v-5a5 5 0 0 0-5-5h-6a5 5 0 0 0-5 5v5H6v-5a7 7 0 0 1 7-7h6a7 7 0 0 1 7 7z" fill="currentColor"></path></svg><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[-->Lazy<!--]--></span></span><span class="xicon-container left"><!--[--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" class="xicon-icon" style="width:18px;height:18px;font-size:18px;color:inherit;"><path d="M26 4h-4V2h-2v2h-8V2h-2v2H6c-1.1 0-2 .9-2 2v20c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 22H6V12h20v14zm0-16H6V6h4v2h2V6h8v2h2V6h4v4z" fill="currentColor"></path></svg><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[-->2024-06-04 15:15:47<!--]--></span></span><span class="xicon-container left"><!--[--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" class="xicon-icon" style="width:18px;height:18px;font-size:18px;color:inherit;"><path d="M11.17 6l3.42 3.41l.58.59H28v16H4V6h7.17m0-2H4a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2H16l-3.41-3.41A2 2 0 0 0 11.17 4z" fill="currentColor"></path></svg><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[--><!--[--><a href="/blog/categories/uniapp/1.html" class="">uniapp</a><!--]--><!--]--></span></span><span class="xicon-container left"><!--[--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" class="xicon-icon" style="width:18px;height:18px;font-size:18px;color:inherit;"><path d="M10 14a4 4 0 1 1 4-4a4.005 4.005 0 0 1-4 4zm0-6a2 2 0 1 0 1.998 2.004A2.002 2.002 0 0 0 10 8z" fill="currentColor"></path><path d="M16.644 29.415L2.586 15.354A2 2 0 0 1 2 13.941V4a2 2 0 0 1 2-2h9.941a2 2 0 0 1 1.414.586l14.06 14.058a2 2 0 0 1 0 2.828l-9.943 9.943a2 2 0 0 1-2.829 0zM4 4v9.942L18.058 28L28 18.058L13.942 4z" fill="currentColor"></path></svg><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[--><!--[--><a href="/blog/tags/uniapp/1.html" class="">uniapp</a><a href="/blog/tags/websocket/1.html" class="">websocket</a><!--]--><!--]--></span></span><span class="xicon-container left"><!--[--><svg class="xicon-icon" style="width:18px;height:18px;font-size:18px;color:inherit;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 12 12"><g fill="none"><path d="M1.974 6.659a.5.5 0 0 1-.948-.317c-.01.03 0-.001 0-.001a1.633 1.633 0 0 1 .062-.162c.04-.095.099-.226.18-.381c.165-.31.422-.723.801-1.136C2.834 3.827 4.087 3 6 3c1.913 0 3.166.827 3.931 1.662a5.479 5.479 0 0 1 .98 1.517l.046.113c.003.008.013.06.023.11L11 6.5s.084.333-.342.474a.5.5 0 0 1-.632-.314v-.003l-.006-.016a3.678 3.678 0 0 0-.172-.376a4.477 4.477 0 0 0-.654-.927C8.584 4.673 7.587 4 6 4s-2.584.673-3.194 1.338a4.477 4.477 0 0 0-.795 1.225a2.209 2.209 0 0 0-.03.078l-.007.018zM6 5a2 2 0 1 0 0 4a2 2 0 0 0 0-4zM5 7a1 1 0 1 1 2 0a1 1 0 0 1-2 0z" fill="currentColor"></path></g></svg><!--]--><span class="xicon-content" style="color:inherit;font-size:14px;"><!--[--><span id="/blogs/uniapp/websocket.html" class="leancloud-visitors" data-flag-title="Your Article Title"><a class="leancloud-visitors-count" style=""></a></span><!----><!--]--></span></span></div><div class="theme-reco-default-content"><div><p>记录一下在<code>uniapp</code>微信小程序中封装<code>websocket</code>功能。实现主动建立连接、心跳防断线机制、断线主动重连、提供主动断开的方法。如有不足，请大佬不吝赐教~</p><h4 id="websocket源码" tabindex="-1"><a class="header-anchor" href="#websocket源码"><span><code>websocket</code>源码</span></a></h4><pre><code class="language-js"><span class="token comment">// 重连websocket间隔，5s</span>
+<span class="token keyword">const</span> interval <span class="token operator">=</span> <span class="token number">5000</span>
+<span class="token comment">// 心跳间隔</span>
+<span class="token keyword">const</span> heartbeatTime <span class="token operator">=</span> <span class="token number">15000</span>
+<span class="token comment">// 重连最大次数</span>
+<span class="token keyword">const</span> maxReconnectMaxTime <span class="token operator">=</span> <span class="token number">5</span>
+
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">WS</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 状态</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token string">&#39;notConnected&#39;</span>
+    <span class="token comment">// 配置</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>options <span class="token operator">=</span> options
+    <span class="token comment">// WS实例</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask <span class="token operator">=</span> <span class="token keyword">null</span>
+
+    <span class="token comment">// 正常关闭</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>normalCloseFlag <span class="token operator">=</span> <span class="token boolean">false</span>
+
+    <span class="token comment">// 重新连接次数</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>reconnectTime <span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token comment">// 重新连接Timer</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>reconnectTimer <span class="token operator">=</span> <span class="token keyword">null</span>
+    <span class="token comment">// 心跳Timer</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>heartTimer <span class="token operator">=</span> <span class="token keyword">null</span>
+
+    <span class="token comment">// 发起连接</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initWS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment">// 关闭WS</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">close</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 正常关闭状态</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>normalCloseFlag <span class="token operator">=</span> <span class="token boolean">true</span>
+      <span class="token comment">// 关闭websocket</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token comment">// 关闭心跳定时器</span>
+      <span class="token function">clearInterval</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>heartTimer<span class="token punctuation">)</span>
+      <span class="token comment">// 关闭重连定时器</span>
+      <span class="token function">clearTimeout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>reconnectTimer<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 初始化WS</span>
+  <span class="token function">initWS</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask <span class="token operator">=</span> uni<span class="token punctuation">.</span><span class="token function">connectSocket</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token string">&quot;wss://demo.com/&quot;</span><span class="token punctuation">,</span> <span class="token comment">// wss地址</span>
+      <span class="token literal-property property">header</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+         <span class="token comment">// 可以添加请求头字段</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token function">success</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// console.debug(&#39;ws连接&#39;, res);</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token comment">// 监听WS</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">watchWS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 监听WS</span>
+  <span class="token function">watchWS</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 监听 WebSocket 连接打开事件</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask<span class="token punctuation">.</span><span class="token function">onOpen</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&#39;websocket连接成功！&#39;</span><span class="token punctuation">)</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token string">&#39;connected&#39;</span>
+      <span class="token comment">// 连接成功</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span><span class="token function">onConnected</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token comment">// 重置连接次数</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>reconnectTime <span class="token operator">=</span> <span class="token number">1</span>
+      <span class="token comment">// 发送心跳</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onHeartBeat</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token comment">// 监听消息</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token comment">// 关闭Toast</span>
+      uni<span class="token punctuation">.</span><span class="token function">hideLoading</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token comment">// 监听websocket 错误</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask<span class="token punctuation">.</span><span class="token function">onError</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 关闭并重连</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token comment">// 监听 WebSocket 连接关闭事件</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask<span class="token punctuation">.</span><span class="token function">onClose</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> <span class="token string">&#39;断开连接------------&#39;</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>normalCloseFlag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>normalCloseFlag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 不正常断开连接，重新连接</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onDisconnected</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 正常关闭连接</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>reconnectTime <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token string">&#39;notConnected&#39;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 监听消息</span>
+  <span class="token function">onMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 监听websocket 收到消息</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask<span class="token punctuation">.</span><span class="token function">onMessage</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> newRes <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">)</span>
+      <span class="token comment">// console.debug(newRes, &#39;ws收到的消息-----------&#39;);</span>
+      <span class="token comment">//收到消息</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>newRes<span class="token punctuation">.</span>code <span class="token operator">===</span> <span class="token string">&#39;1&#39;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>newRes<span class="token punctuation">.</span>msgId <span class="token operator">===</span> <span class="token number">100002</span><span class="token punctuation">)</span> <span class="token keyword">return</span>
+        uni<span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">&#39;wsOperation&#39;</span><span class="token punctuation">,</span> newRes<span class="token punctuation">)</span>
+        <span class="token comment">// 告诉wss已收到消息</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sendACKHandle</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">msgId</span><span class="token operator">:</span> <span class="token string">&#39;100003&#39;</span><span class="token punctuation">,</span> <span class="token literal-property property">sequenceId</span><span class="token operator">:</span> newRes<span class="token punctuation">.</span>sequenceId <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&#39;未监听到消息原因：&#39;</span><span class="token punctuation">,</span> newRes<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token comment">// 断开连接</span>
+  <span class="token function">onDisconnected</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token string">&#39;notConnected&#39;</span>
+    console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&#39;websocket断开连接，原因：&#39;</span><span class="token punctuation">,</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment">// 关闭心跳</span>
+    <span class="token function">clearInterval</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>heartTimer<span class="token punctuation">)</span>
+    <span class="token comment">// 全局Toast提示，防止用户继续发送</span>
+    <span class="token comment">// uni.showLoading({ title: &#39;消息收取中…&#39; })</span>
+    <span class="token comment">// 尝试重新连接</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onReconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token comment">// 断线重连</span>
+  <span class="token function">onReconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">clearTimeout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>reconnectTimer<span class="token punctuation">)</span>
+    <span class="token comment">// 多次重连</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>reconnectTime <span class="token operator">&lt;</span> maxReconnectMaxTime<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>reconnectTimer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">第【</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>reconnectTime<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">】次重新连接中……</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">initWS</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>reconnectTime<span class="token operator">++</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> interval<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 重连失败</span>
+      <span class="token comment">// uni.showModal({</span>
+      <span class="token comment">//   title: &#39;温馨提示&#39;,</span>
+      <span class="token comment">//   content: &#39;服务器开小差啦~请返回聊天列表重试&#39;,</span>
+      <span class="token comment">//   showCancel: false,</span>
+      <span class="token comment">//   confirmText: &#39;我知道了&#39;,</span>
+      <span class="token comment">//   success: () =&gt; {</span>
+      <span class="token comment">//     uni.navigateBack()</span>
+      <span class="token comment">//   }</span>
+      <span class="token comment">// })</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token doc-comment comment">/** @心跳 10分钟内必须发送一次心跳 **/</span>
+  <span class="token function">onHeartBeat</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>heartTimer <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">msgId</span><span class="token operator">:</span> <span class="token string">&#39;100001&#39;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&#39;心跳发送成功！&#39;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> heartbeatTime<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 收到非心跳的消息回复一个ack内容</span>
+  <span class="token function">sendACKHandle</span><span class="token punctuation">(</span><span class="token parameter">contentData</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>contentData<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// console.debug(&#39;回复内容成功&#39;)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h4 id="在vue页面使用" tabindex="-1"><a class="header-anchor" href="#在vue页面使用"><span>在<code>vue</code>页面使用</span></a></h4><pre><code class="language-vue"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">const</span> <span class="token function-variable function">initWS</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>ws <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WS</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token literal-property property">userId</span><span class="token operator">:</span> <span class="token string">&#39;xxx&#39;</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">token</span><span class="token operator">:</span> <span class="token string">&#39;xxx&#39;</span><span class="token punctuation">,</span>
+			<span class="token literal-property property">onConnected</span><span class="token operator">:</span> onConnected<span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 连接ws成功回调</span>
+    <span class="token keyword">const</span> <span class="token parameter">onConnected</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&#39;成功了&#39;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><h4 id="心跳机制" tabindex="-1"><a class="header-anchor" href="#心跳机制"><span>心跳机制</span></a></h4><p>用于告诉服务端当前用户还在通信中，防止服务端主动断开。</p><pre><code class="language-javascript"><span class="token doc-comment comment">/** @心跳 10分钟内必须发送一次心跳 **/</span>
+  <span class="token function">onHeartBeat</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>heartTimer <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">msgId</span><span class="token operator">:</span> <span class="token string">&#39;100001&#39;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&#39;心跳发送成功！&#39;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> heartbeatTime<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 收到非心跳的消息回复一个ack内容</span>
+  <span class="token function">sendACKHandle</span><span class="token punctuation">(</span><span class="token parameter">contentData</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>socketTask<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>contentData<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// console.debug(&#39;回复内容成功&#39;)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+</code></pre><h4 id="微信小程序需要注意的坑-以下是根据微信开发文档小程序运行机制总结出来的-仅代表个人见解" tabindex="-1"><a class="header-anchor" href="#微信小程序需要注意的坑-以下是根据微信开发文档小程序运行机制总结出来的-仅代表个人见解"><span>微信小程序需要注意的坑（以下是根据微信开发文档小程序运行机制总结出来的，仅代表个人见解）</span></a></h4><ol><li>小程序进入【后台】5秒后， 微信会停止小程序<code> JS</code> 线程的执行， 小程序进入【挂起】状态 。此时小程序的内存状态会被保留，但开发者代码执行会停止，事件和接口回调会在小程序再次进入「前台」时触发。但这样会导致<code>ws</code>通讯收到消息时的处理逻辑会被中断，有可能会不会处理，知道进入【前台】状态才会进行触发。这里不确定的是5秒后<code>ws</code>通讯的逻辑还会不会执行，需要进一步验证。</li><li>防止以上问题出现，可以在小程序进入【后台】状态后主动断开<code>ws</code>，等进入【前台状态】时在主动连接；但这个方案需要服务存储断开后未下发的数据，直到连接上<code>ws</code>后再主动下发。</li></ol><p>PS：只是单纯的记录一下开发过程中所涉及的技术，请勿商用！</p></div></div><footer class="page-meta"><!----><!----></footer><!----><div class="reco-valine-wrapper" style="display:none;"><div id="valine"></div></div></main><!--]--><!----></div></div><!--[--><!----><!----><!--]--><!--]--></div>
+    <script type="module" src="/blog/assets/app-DtKoVOCb.js" defer></script>
+  </body>
+</html>
